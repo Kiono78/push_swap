@@ -6,39 +6,11 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:10:07 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/12 12:01:19 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/14 10:55:14 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-char	**init_parsing_args(int argc, char **argv)
-{
-	char	**output;
-	int 	i;
-
-	output = malloc(sizeof(char **) * (argc));
-	i = 1;
-	while (i < argc)
-	{
-		output[i - 1] = ft_strdup(argv[i]);
-		i++;
-	}
-	output[i - 1] = 0;
-	return (output);
-}
-
-// void	create_stack(t_element **head, char **nbs)
-// {
-// 	int			i;
-
-// 	i = 0;
-// 	while (nbs[i])
-// 	{
-// 		ft_lstadd_back(head, ft_lstnew(ft_atoi(nbs[i])));
-// 		i++;
-// 	}
-// }
 
 t_stack	*initiliaze_empty_stack(void)
 {
@@ -47,19 +19,6 @@ t_stack	*initiliaze_empty_stack(void)
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->size = 0;
 	return (stack);
-}
-
-void	free_char_tabs(char **nbs)
-{
-	int	i;
-
-	i = 0;
-	while (nbs[i])
-	{
-		free(nbs[i]);
-		i++;
-	}
-	free(nbs);
 }
 
 t_stack	*free_piles(t_element *head)
@@ -82,31 +41,28 @@ t_stack	*create_stack(char **nbs)
 {
 	int			i;
 	t_element	*tmp;
-	t_element	*head;
 	t_stack		*stack;
 
 	stack = initiliaze_empty_stack();
-	head = ft_lstnew(ft_atoi(nbs[0]));
-	if (!head)
+	stack->head = ft_lstnew(ft_atoi(nbs[1]));
+	if (!stack->head)
 		return (NULL);
-	stack->head = head;
 	stack->size++;
-	i = 1;
+	i = 2;
 	while (nbs[i])
 	{
 		tmp = ft_lstnew(ft_atoi(nbs[i]));
 		if (!tmp)
-			return (free_piles);
-		ft_lstadd_back(&head, ft_lstnew(ft_atoi(nbs[i])));
+			return (free_piles(stack->head));
+		ft_lstadd_back(&stack->head, ft_lstnew(ft_atoi(nbs[i])));
 		stack->size++;
 		i++;
 	}
 	return (stack);
 }
 
-int	error_message(char **nbs)
+int	error_message()
 {
-	free_char_tabs(nbs);
 	write(2, "Error\n", 6);
 	return (0);
 }
@@ -116,7 +72,7 @@ int	error_figures(char **nbs)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	while (nbs[i])
 	{
 		j = 0;
@@ -133,23 +89,42 @@ int	error_figures(char **nbs)
 	return (0);
 }
 
+void print(t_element *head) 
+{
+    t_element *current_node = head;
+   	while ( current_node != NULL) 
+	{
+        printf("%d ", current_node->nb);
+        current_node = current_node->next;
+    }
+}
+
 int	main(int argc, char **argv)
 {
 	char		**nbs;
 	t_stack		*a;
+	t_stack		*b;
+	t_element	*push_new;
 
 	if (argc < 2)
 		return (0);
-	// if (argc == 2)
-	// 	nbs = ft_split(argv[1], ' ');
-	// else
-	// 	nbs = init_parsing_args(argc, argv);
-	nbs = init_parsing_args(argc, argv);
-	if (error_figures(nbs))
-		return (error_message(&*nbs));
-	// a = create_stack(nbs);
-	// if a is NULL
-	// free_char_tabs(nbs);
-	printf("nb[0] : %s", nbs[0]);
+	if (error_figures(argv))
+		return (error_message());
+	a = create_stack(argv);
+	if (!a)
+		return (error_message());
+	print(a->head);
+	push_new = push(56, a);
+	printf("\n");
+	print(a->head);
+	printf("\n");
+	swap(a);
+	print(a->head);
+	printf("\n");
+	rotate(a);
+	print(a->head);
+	printf("\n");
+	reverse_rotate(a);
+	print(a->head);
 	return (0);
 }
