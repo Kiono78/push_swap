@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:10:07 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/14 10:55:14 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/17 17:36:19 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_stack	*initiliaze_empty_stack(void)
 	t_stack	*stack;
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
+	stack->head = NULL;
 	stack->size = 0;
 	return (stack);
 }
@@ -99,12 +100,12 @@ void print(t_element *head)
     }
 }
 
+
 int	main(int argc, char **argv)
 {
 	char		**nbs;
 	t_stack		*a;
 	t_stack		*b;
-	t_element	*push_new;
 
 	if (argc < 2)
 		return (0);
@@ -113,18 +114,14 @@ int	main(int argc, char **argv)
 	a = create_stack(argv);
 	if (!a)
 		return (error_message());
+	b = initiliaze_empty_stack();
+	if (is_sorted(a))
+		printf("stack is already sorted");
+	else
+		algorithm_selection(a, b);
+	printf("\n a stack:\n");
 	print(a->head);
-	push_new = push(56, a);
-	printf("\n");
-	print(a->head);
-	printf("\n");
-	swap(a);
-	print(a->head);
-	printf("\n");
-	rotate(a);
-	print(a->head);
-	printf("\n");
-	reverse_rotate(a);
-	print(a->head);
+	printf("\n b stack:\n");
+	print(b->head);
 	return (0);
 }
