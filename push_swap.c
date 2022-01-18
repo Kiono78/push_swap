@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:10:07 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/17 17:36:19 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/18 14:16:09 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_stack	*initiliaze_empty_stack(void)
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->head = NULL;
 	stack->size = 0;
+	stack->median = 0;
 	return (stack);
 }
 
@@ -100,6 +101,19 @@ void print(t_element *head)
     }
 }
 
+void	algorithm_selection(t_stack *a, t_stack *b)
+{
+	if (a->size == 2)
+		print_action("sa", a, b);
+	else if (a->size == 3)
+		three_values(a, b);
+	else if (a->size == 4)
+		four_values(a, b);
+	else if (a->size == 5)
+		five_values(a, b);
+	else if (a->size > 5)
+		sort_large(a, b);
+}
 
 int	main(int argc, char **argv)
 {

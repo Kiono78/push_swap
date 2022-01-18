@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting.c                                          :+:      :+:    :+:   */
+/*   sorting_small.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 09:31:40 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/17 17:53:04 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/18 14:16:12 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,6 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	algorithm_selection(t_stack *a, t_stack *b)
-{
-	if (a->size == 2)
-		print_action("sa", a, b);
-	else if (a->size == 3)
-		three_values(a, b);
-	else if (a->size == 4)
-		four_values(a, b);
-	else if (a->size == 5)
-		five_values(a, b);
-}
-
 void	three_values(t_stack *a, t_stack *b)
 {
 	int			second;
@@ -45,7 +33,8 @@ void	three_values(t_stack *a, t_stack *b)
 	
 	second = a->head->next->nb;
 	third = a->head->next->next->nb;
-	if (a->head->nb < second && a->head->nb < third)
+	print(a->head);
+	if (a->head->nb < second && second < third)
 		return;
 	if (a->head->nb < second && second > third && a->head->nb < third)
 	{
@@ -73,9 +62,8 @@ void	four_values(t_stack *a, t_stack *b)
 	print_action("pa", a, b);
 	three_values(a, b);
 	printf("\n");
-	print(a->head);
 	print_action("pb", a, b);
-	if (a->head->nb < a->head->next->nb)
+	if (a->head->nb < a->head->next->nb/* && a->head->nb < a->head->next->next->nb*/)
 		return;
 	else if (a->head->nb > a->head->next->nb && a->head->nb < a->head->next->next->nb)
 		print_action("sa", a, b);
