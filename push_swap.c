@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:10:07 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/18 14:16:09 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/20 14:17:52 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_stack	*initiliaze_empty_stack(void)
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->head = NULL;
 	stack->size = 0;
-	stack->median = 0;
 	return (stack);
 }
 
@@ -56,7 +55,7 @@ t_stack	*create_stack(char **nbs)
 		tmp = ft_lstnew(ft_atoi(nbs[i]));
 		if (!tmp)
 			return (free_piles(stack->head));
-		ft_lstadd_back(&stack->head, ft_lstnew(ft_atoi(nbs[i])));
+		ft_lstadd_back(&stack->head, tmp);
 		stack->size++;
 		i++;
 	}

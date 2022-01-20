@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 09:31:40 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/18 14:16:12 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/20 14:15:37 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,33 +103,4 @@ void five_values(t_stack *a, t_stack *b)
 	}
 	else if (a->head->nb > a->head->next->nb)
 		print_action("sa", a, b);
-}
-
-void	print_action(char *action, t_stack *a, t_stack *b)
-{
-	if (ft_strncmp(action, "pa", 2) == 0)
-	{
-		ft_putstr_fd("pa\n", 1);
-		push(a, b);
-	}
-	else if (ft_strncmp(action, "sa", 2) == 0)
-	{
-		ft_putstr_fd("sa\n", 1);
-		swap(a);
-	}
-	else if (ft_strncmp(action, "ra", 2) == 0)
-	{
-		ft_putstr_fd("ra\n", 1);
-		rotate(a);
-	}
-	else if (ft_strncmp(action, "rra", 2) == 0)
-	{
-		ft_putstr_fd("rra\n", 1);
-		reverse_rotate(a);
-	}
-	else if (ft_strncmp(action, "pb", 2) == 0)
-	{
-		ft_putstr_fd("pb\n", 1);
-		push(b, a);
-	}
 }

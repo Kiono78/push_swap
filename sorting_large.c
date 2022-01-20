@@ -6,13 +6,13 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 09:33:29 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/18 14:27:28 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/20 16:28:12 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_median(t_stack *a)
+int	*create_ordered_array(t_stack *a)
 {
 	int			*array;
 	int			i;
@@ -32,7 +32,7 @@ int	find_median(t_stack *a)
 	return (sort_array(a, array));
 }
 
-int	sort_array(t_stack *a, int *array)
+int	*sort_array(t_stack *a, int *array)
 {
 	int	i;
 	int	tmp;
@@ -41,7 +41,6 @@ int	sort_array(t_stack *a, int *array)
 	tmp = 0;
 	while (i < (a->size - 1))
 	{
-		printf("array[%d] : %d\n", i,array[i]);
 		if (array[i] <= array[i + 1])
 			i++;
 		else
@@ -52,12 +51,65 @@ int	sort_array(t_stack *a, int *array)
 			i = 0;
 		}
 	}
-	printf("a->size : %d\n", a->size);
-	return (array[a->size / 2]);
+	return (array);
 }
 
 void sort_large(t_stack *a, t_stack *b)
 {
-	a->median = find_median(a);
-	printf("median : %d", a->median);
+	int			*array;
+	t_element	*tmp;
+	int			i;
+	int			max_bits;
+	int			j;
+	int			a_size;
+
+	//Array should be at least unsigned int, or long
+	array = create_ordered_array(a);
+	tmp = a->head;
+	while (tmp)
+	{
+		i = 0;
+		while (i < a->size)
+		{
+			if (tmp->nb == array[i])
+				tmp->expected_pos = i;
+			i++;
+		}
+		tmp = tmp->next;
+	}
+	max_bits = 0;
+	while (((a->size - 1) >> max_bits) != 0)
+		max_bits++;
+	i = 0;
+	tmp = a->head;
+	while (i < max_bits)
+	{
+		a_size = a->size;
+		while (tmp && j < a_size)
+		{
+			if (((tmp->expected_pos >> i) & 1) == 0)
+			{
+				tmp = tmp->next;
+				print_action("ra", a, b);
+			}
+			else
+			{
+				tmp = tmp->next;
+				print_action("pb", a, b);
+			}
+			j++;
+		}
+		print(a->head);
+		printf("\n");
+		print(b->head);
+		while (b->head!= NULL)
+		{
+			printf("b->head->nb : %d\n", b->head->nb);
+			print_action("pa", a, b);
+			printf("\na stack: ");
+			print(a->head);
+			printf("\n");
+		}
+		i++;
+	}
 }
