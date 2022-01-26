@@ -6,17 +6,17 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:35:56 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/11 17:18:40 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/17 11:35:16 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_lstnew(int nb)
+t_element	*ft_lstnew(int nb)
 {
-	t_stack	*new;
+	t_element	*new;
 
-	new = (t_stack *)malloc(sizeof(t_stack));
+	new = (t_element *)malloc(sizeof(t_element));
 	if (new)
 	{
 		new->nb = nb;
@@ -25,7 +25,7 @@ t_stack	*ft_lstnew(int nb)
 	return (new);
 }
 
-t_stack	*ft_lstlast(t_stack *lst)
+t_element	*ft_lstlast(t_element *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -34,9 +34,9 @@ t_stack	*ft_lstlast(t_stack *lst)
 	return (lst);
 }
 
-void	ft_lstadd_back(t_stack **alst, t_stack *new)
+void	ft_lstadd_back(t_element **alst, t_element *new)
 {
-	t_stack	*lst;
+	t_element	*lst;
 
 	if (*alst)
 	{

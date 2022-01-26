@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:10:07 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/20 14:17:52 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/24 16:16:43 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,5 @@ int	main(int argc, char **argv)
 		printf("stack is already sorted");
 	else
 		algorithm_selection(a, b);
-	printf("\n a stack:\n");
-	print(a->head);
-	printf("\n b stack:\n");
-	print(b->head);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 09:31:40 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/20 14:15:37 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/24 16:30:33 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	three_values(t_stack *a, t_stack *b)
 	
 	second = a->head->next->nb;
 	third = a->head->next->next->nb;
-	print(a->head);
 	if (a->head->nb < second && second < third)
 		return;
 	if (a->head->nb < second && second > third && a->head->nb < third)
@@ -59,11 +58,10 @@ void	three_values(t_stack *a, t_stack *b)
 
 void	four_values(t_stack *a, t_stack *b)
 {
-	print_action("pa", a, b);
-	three_values(a, b);
-	printf("\n");
 	print_action("pb", a, b);
-	if (a->head->nb < a->head->next->nb/* && a->head->nb < a->head->next->next->nb*/)
+	three_values(a, b);
+	print_action("pa", a, b);
+	if (a->head->nb < a->head->next->nb)
 		return;
 	else if (a->head->nb > a->head->next->nb && a->head->nb < a->head->next->next->nb)
 		print_action("sa", a, b);
@@ -80,15 +78,15 @@ void	four_values(t_stack *a, t_stack *b)
 
 void five_values(t_stack *a, t_stack *b)
 {
-	print_action("pa", a, b);
-	four_values(a, b);
 	print_action("pb", a, b);
+	four_values(a, b);
+	print_action("pa", a, b);
 	if (a->head->nb < a->head->next->nb)
 		return;
 	if (a->head->nb > a->head->next->next->next->next->nb)
 		print_action("ra", a, b);
 	else if (a->head->nb > a->head->next->next->next->nb)
-	{
+	{ 
 		print_action("rra", a, b);
 		print_action("sa", a, b);
 		print_action("ra", a, b);

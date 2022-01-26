@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 09:33:29 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/20 16:28:12 by bterral          ###   ########.fr       */
+/*   Updated: 2022/01/24 13:49:58 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void sort_large(t_stack *a, t_stack *b)
 	int			i;
 	int			max_bits;
 	int			j;
-	int			a_size;
+	int			size;
 
 	//Array should be at least unsigned int, or long
 	array = create_ordered_array(a);
@@ -81,35 +81,20 @@ void sort_large(t_stack *a, t_stack *b)
 	while (((a->size - 1) >> max_bits) != 0)
 		max_bits++;
 	i = 0;
-	tmp = a->head;
+	size = a->size;
 	while (i < max_bits)
 	{
-		a_size = a->size;
-		while (tmp && j < a_size)
+		j = 0;
+		while (j < size)
 		{
-			if (((tmp->expected_pos >> i) & 1) == 0)
-			{
-				tmp = tmp->next;
+			if (((a->head->expected_pos >> i) & 1) == 1)
 				print_action("ra", a, b);
-			}
 			else
-			{
-				tmp = tmp->next;
 				print_action("pb", a, b);
-			}
 			j++;
 		}
-		print(a->head);
-		printf("\n");
-		print(b->head);
 		while (b->head!= NULL)
-		{
-			printf("b->head->nb : %d\n", b->head->nb);
 			print_action("pa", a, b);
-			printf("\na stack: ");
-			print(a->head);
-			printf("\n");
-		}
 		i++;
 	}
 }
