@@ -6,11 +6,11 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:35:56 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/17 11:35:16 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/02 10:47:34 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 t_element	*ft_lstnew(int nb)
 {

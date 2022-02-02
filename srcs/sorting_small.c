@@ -6,11 +6,11 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 09:31:40 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/24 16:30:33 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/02 10:45:25 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	is_sorted(t_stack *stack)
 {

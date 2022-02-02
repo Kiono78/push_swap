@@ -6,28 +6,11 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 09:34:38 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/24 13:43:47 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/02 10:44:29 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-// void	push(t_element *ele, t_stack *stack)
-// {
-// 	t_element	*node;
-
-// 	node = (t_element *)malloc(sizeof(t_element));
-// 	if (!node)
-// 	{
-// 		printf("stack overflow\n");
-// 		// return (free_everything());
-// 	}
-// 	node->nb = nb;
-// 	node->next = stack->head;
-// 	stack->head = node;
-// 	stack->size++;
-// 	return (node);
-// }
+#include "../includes/push_swap.h"
 
 void	print_action(char *action, t_stack *a, t_stack *b)
 {

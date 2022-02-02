@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 14:10:07 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/24 16:16:43 by bterral          ###   ########.fr       */
+/*   Created: 2022/02/02 10:47:41 by bterral           #+#    #+#             */
+/*   Updated: 2022/02/02 11:16:19 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 t_stack	*initiliaze_empty_stack(void)
 {
@@ -62,35 +62,28 @@ t_stack	*create_stack(char **nbs)
 	return (stack);
 }
 
-int	error_message()
+int	check_duplicate(t_stack *stack)
 {
-	write(2, "Error\n", 6);
-	return (0);
-}
+	t_element	*tmp1;
+	t_element	*tmp2;
 
-int	error_figures(char **nbs)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while (nbs[i])
+	tmp1 = stack->head;
+	//is it OK if stack is one element
+	while (tmp1->next)
 	{
-		j = 0;
-		if (nbs[i][j] == '-')
-			j++;
-		while (nbs[i][j])
+		tmp2 = tmp1->next;
+		while(tmp2)
 		{
-			if (nbs[i][j] < '0' || nbs[i][j] > '9')
+			if (tmp1->nb == tmp2->nb)
 				return (1);
-			j++;
+			tmp2 = tmp2->next;
 		}
-		i++;
+		tmp1 = tmp1->next;
 	}
 	return (0);
 }
 
-void print(t_element *head) 
+void print(t_element *head)
 {
     t_element *current_node = head;
    	while ( current_node != NULL) 
@@ -98,39 +91,4 @@ void print(t_element *head)
         printf("%d ", current_node->nb);
         current_node = current_node->next;
     }
-}
-
-void	algorithm_selection(t_stack *a, t_stack *b)
-{
-	if (a->size == 2)
-		print_action("sa", a, b);
-	else if (a->size == 3)
-		three_values(a, b);
-	else if (a->size == 4)
-		four_values(a, b);
-	else if (a->size == 5)
-		five_values(a, b);
-	else if (a->size > 5)
-		sort_large(a, b);
-}
-
-int	main(int argc, char **argv)
-{
-	char		**nbs;
-	t_stack		*a;
-	t_stack		*b;
-
-	if (argc < 2)
-		return (0);
-	if (error_figures(argv))
-		return (error_message());
-	a = create_stack(argv);
-	if (!a)
-		return (error_message());
-	b = initiliaze_empty_stack();
-	if (is_sorted(a))
-		printf("stack is already sorted");
-	else
-		algorithm_selection(a, b);
-	return (0);
 }

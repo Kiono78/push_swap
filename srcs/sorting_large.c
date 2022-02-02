@@ -6,11 +6,11 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 09:33:29 by bterral           #+#    #+#             */
-/*   Updated: 2022/01/24 13:49:58 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/02 10:43:40 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	*create_ordered_array(t_stack *a)
 {
