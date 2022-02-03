@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 13:57:24 by bterral           #+#    #+#             */
-/*   Updated: 2022/02/02 11:07:35 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/03 11:20:28 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char		*ft_strdup(const char *s);
 void		ft_lstadd_back(t_element **alst, t_element *new);
 t_element	*ft_lstnew(int nb);
 long		ft_atol(const char *str);
-
+void 		print(t_element *head);
 
 ////////////////////////////////////////
 //        error management            //
@@ -60,6 +60,7 @@ t_stack	*create_stack(char **nbs);
 int	check_duplicate(t_stack *stack);
 t_stack	*free_piles(t_element *head);
 t_stack	*initiliaze_empty_stack(void);
+void	free_all(t_stack *a, t_stack *b);
 
 ////////////////////////////////////////
 //         stack functions            //
@@ -80,6 +81,7 @@ void		print_action(char *action, t_stack *a, t_stack *b);
 void		three_values(t_stack *a, t_stack *b);
 void		four_values(t_stack *a, t_stack *b);
 void 		five_values(t_stack *a, t_stack *b);
+void		push_lower_to_b(t_stack *a, t_stack *b);
 
 ////////////////////////////////////////
 //     sorting large algorithm        //

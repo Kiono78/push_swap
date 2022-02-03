@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:10:07 by bterral           #+#    #+#             */
-/*   Updated: 2022/02/02 11:42:42 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/03 10:02:23 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ void	algorithm_selection(t_stack *a, t_stack *b)
 		five_values(a, b);
 	else if (a->size > 5)
 		sort_large(a, b);
-	// free(a);
-	// free(b);
-	//better to free, my linked list
+	free_all(a, b);
 	exit(0);
 }
 
@@ -69,7 +67,7 @@ int	main(int argc, char **argv)
 		return (error_message());
 	b = initiliaze_empty_stack();
 	if (is_sorted(a))
-		printf("stack is already sorted");
+		exit(EXIT_SUCCESS);
 	else
 		algorithm_selection(a, b);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 10:47:41 by bterral           #+#    #+#             */
-/*   Updated: 2022/02/02 11:16:19 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/03 10:54:09 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,14 @@ int	check_duplicate(t_stack *stack)
 		tmp1 = tmp1->next;
 	}
 	return (0);
+}
+
+void	free_all(t_stack *a, t_stack *b)
+{
+	a = free_piles(a->head);
+	free(a);
+	b = free_piles(b->head);
+	free(b);
 }
 
 void print(t_element *head)

@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 09:31:40 by bterral           #+#    #+#             */
-/*   Updated: 2022/02/02 10:45:25 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/03 11:20:03 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,49 +56,46 @@ void	three_values(t_stack *a, t_stack *b)
 	}
 }
 
-void	four_values(t_stack *a, t_stack *b)
+void	push_lower_to_b(t_stack *a, t_stack *b)
 {
-	print_action("pb", a, b);
-	three_values(a, b);
-	print_action("pa", a, b);
-	if (a->head->nb < a->head->next->nb)
-		return;
-	else if (a->head->nb > a->head->next->nb && a->head->nb < a->head->next->next->nb)
-		print_action("sa", a, b);
-	else if (a->head->nb > a->head->next->next->nb && a->head->nb < a->head->next->next->next->nb)
+	t_element	*tmp;
+	t_element	*min_ptr;
+	int			i;
+
+	i = 0;
+	tmp = a->head;
+	min_ptr = a->head;
+	while (tmp)
 	{
-		print_action("rra", a, b);
-		print_action("sa", a, b);
-		print_action("rra", a, b);
-		print_action("rra", a, b);
+		if (tmp->nb < min_ptr->nb)
+		{
+			min_ptr = tmp;
+			i++;
+		}
+		tmp = tmp->next;
 	}
-	else
-		print_action("ra", a, b);
+	while (min_ptr != a->head)
+	{
+		if (i < 2)
+			print_action("ra", a, b);
+		else
+			print_action("rra", a, b);
+	}
+	print_action("pb", a, b);
 }
 
-void five_values(t_stack *a, t_stack *b)
+void	four_values(t_stack *a, t_stack *b)
 {
-	print_action("pb", a, b);
-	four_values(a, b);
+	push_lower_to_b(a, b);
+	three_values(a, b);
 	print_action("pa", a, b);
-	if (a->head->nb < a->head->next->nb)
-		return;
-	if (a->head->nb > a->head->next->next->next->next->nb)
-		print_action("ra", a, b);
-	else if (a->head->nb > a->head->next->next->next->nb)
-	{ 
-		print_action("rra", a, b);
-		print_action("sa", a, b);
-		print_action("ra", a, b);
-		print_action("ra", a, b);
-	}
-	else if (a->head->nb > a->head->next->next->nb)
-	{
-		print_action("sa", a, b);
-		print_action("ra", a, b);
-		print_action("sa", a, b);
-		print_action("rra", a, b);
-	}
-	else if (a->head->nb > a->head->next->nb)
-		print_action("sa", a, b);
+}
+
+void	five_values(t_stack *a, t_stack *b)
+{
+	push_lower_to_b(a, b);
+	push_lower_to_b(a, b);
+	three_values(a, b);
+	print_action("pa", a, b);
+	print_action("pa", a, b);
 }
