@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 09:31:40 by bterral           #+#    #+#             */
-/*   Updated: 2022/02/03 11:20:03 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/04 10:10:27 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	three_values(t_stack *a, t_stack *b)
 {
 	int			second;
 	int			third;
-	
+
 	second = a->head->next->nb;
 	third = a->head->next->next->nb;
 	if (a->head->nb < second && second < third)
-		return;
+		return ;
 	if (a->head->nb < second && second > third && a->head->nb < third)
 	{
 		print_action("sa", a, b);
@@ -43,10 +43,7 @@ void	three_values(t_stack *a, t_stack *b)
 	else if (a->head->nb > second && second < third && a->head->nb < third)
 		print_action("sa", a, b);
 	else if (a->head->nb < second && second > third && a->head->nb > third)
-	{
-		print_action("ra", a, b);
-		print_action("ra", a, b);
-	}
+		print_action("rra", a, b);
 	else if (a->head->nb > second && second < third && a->head->nb > third)
 		print_action("ra", a, b);
 	else

@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 09:33:29 by bterral           #+#    #+#             */
-/*   Updated: 2022/02/02 10:43:40 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/04 10:20:17 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,16 @@ int	*sort_array(t_stack *a, int *array)
 	return (array);
 }
 
-void sort_large(t_stack *a, t_stack *b)
+void	stack_assign_index(t_stack *stack, int *array)
 {
-	int			*array;
 	t_element	*tmp;
 	int			i;
-	int			max_bits;
-	int			j;
-	int			size;
 
-	//Array should be at least unsigned int, or long
-	array = create_ordered_array(a);
-	tmp = a->head;
+	tmp = stack->head;
 	while (tmp)
 	{
 		i = 0;
-		while (i < a->size)
+		while (i < stack->size)
 		{
 			if (tmp->nb == array[i])
 				tmp->expected_pos = i;
@@ -77,9 +71,14 @@ void sort_large(t_stack *a, t_stack *b)
 		}
 		tmp = tmp->next;
 	}
-	max_bits = 0;
-	while (((a->size - 1) >> max_bits) != 0)
-		max_bits++;
+}
+
+void	large_actions_algorithm(t_stack *a, t_stack *b, int max_bits)
+{
+	int	size;
+	int	i;
+	int	j;
+
 	i = 0;
 	size = a->size;
 	while (i < max_bits)
@@ -93,8 +92,21 @@ void sort_large(t_stack *a, t_stack *b)
 				print_action("pb", a, b);
 			j++;
 		}
-		while (b->head!= NULL)
+		while (b->head != NULL)
 			print_action("pa", a, b);
 		i++;
 	}
+}
+
+void	sort_large(t_stack *a, t_stack *b)
+{
+	int			*array;
+	int			max_bits;
+
+	array = create_ordered_array(a);
+	stack_assign_index(a, array);
+	max_bits = 0;
+	while (((a->size - 1) >> max_bits) != 0)
+		max_bits++;
+	large_actions_algorithm(a, b, max_bits);
 }

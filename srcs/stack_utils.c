@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 10:47:41 by bterral           #+#    #+#             */
-/*   Updated: 2022/02/03 10:54:09 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/04 10:05:16 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_stack	*initiliaze_empty_stack(void)
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->head = NULL;
 	stack->size = 0;
+	stack->max_bits = 0;
 	return (stack);
 }
 
@@ -68,11 +69,10 @@ int	check_duplicate(t_stack *stack)
 	t_element	*tmp2;
 
 	tmp1 = stack->head;
-	//is it OK if stack is one element
 	while (tmp1->next)
 	{
 		tmp2 = tmp1->next;
-		while(tmp2)
+		while (tmp2)
 		{
 			if (tmp1->nb == tmp2->nb)
 				return (1);
@@ -89,14 +89,4 @@ void	free_all(t_stack *a, t_stack *b)
 	free(a);
 	b = free_piles(b->head);
 	free(b);
-}
-
-void print(t_element *head)
-{
-    t_element *current_node = head;
-   	while ( current_node != NULL) 
-	{
-        printf("%d ", current_node->nb);
-        current_node = current_node->next;
-    }
 }

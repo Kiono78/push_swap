@@ -6,13 +6,13 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 10:46:26 by bterral           #+#    #+#             */
-/*   Updated: 2022/02/02 11:20:12 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/04 09:59:54 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	error_message()
+int	error_message(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);
@@ -24,7 +24,6 @@ int	error_figures(char **nbs)
 	int	j;
 
 	i = 1;
-
 	while (nbs[i])
 	{
 		if (!nbs[i][0])
