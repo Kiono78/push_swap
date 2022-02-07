@@ -6,14 +6,14 @@
 #    By: bterral <bterral@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 09:22:12 by bterral           #+#    #+#              #
-#    Updated: 2022/02/03 09:34:30 by bterral          ###   ########.fr        #
+#    Updated: 2022/02/07 12:31:41 by bterral          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				:= push_swap
 
 SRCS_FILES 			:= actions.c error.c lst_utils.c push_swap.c \
-				sorting_large.c sorting_small.c stack_utils.c
+						sorting_large.c sorting_small.c stack_utils.c
 
 SRCS_DIR			:= ./srcs/
 
@@ -25,7 +25,9 @@ OBJS_DIR			:= ./.objs/
 
 OBJS				:= $(addprefix $(OBJS_DIR), $(LST_OBJS))
 
-INCLUDES			:= ./includes/
+INCLUDES_DIR		:= ./includes/
+
+INCLUDES			:= ./includes/push_swap.h
 
 ### LIB ###
 
@@ -62,7 +64,7 @@ RM					:= rm -rf
 all: $(NAME)
 
 $(OBJS_DIR)%o: $(SRCS_DIR)%c $(INCLUDES) Makefile | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -I $(INCLUDES) -I $(LIBFT_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(INCLUDES_DIR) -I $(LIBFT_DIR) -c $< -o $@
 
 $(LIBFT_LIB): $(OBJS_LIBFT) $(INCLUDES_LIBFT)
 	$(MAKE) -C $(LIBFT_DIR)
