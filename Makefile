@@ -6,7 +6,7 @@
 #    By: bterral <bterral@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 09:22:12 by bterral           #+#    #+#              #
-#    Updated: 2022/02/07 12:31:41 by bterral          ###   ########.fr        #
+#    Updated: 2022/02/07 13:33:18 by bterral          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ $(OBJS_DIR)%o: $(SRCS_DIR)%c $(INCLUDES) Makefile | $(OBJS_DIR)
 $(LIBFT_LIB): $(OBJS_LIBFT) $(INCLUDES_LIBFT)
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(NAME): $(OBJS) $(LIBFT_LIB)
+$(NAME): $(LIBFT_LIB) $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $(NAME)
 
 $(OBJS_DIR):
