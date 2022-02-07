@@ -6,7 +6,7 @@
 /*   By: bterral <bterral@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 10:46:26 by bterral           #+#    #+#             */
-/*   Updated: 2022/02/04 09:59:54 by bterral          ###   ########.fr       */
+/*   Updated: 2022/02/07 12:55:00 by bterral          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	error_figures(char **nbs)
 			|| ft_strlen(nbs[i]) > 11)
 			return (1);
 		j = 0;
-		if (nbs[i][j] == '-')
+		if (nbs[i][j] == '-' && ft_strlen(nbs[i]) > 1)
 			j++;
 		while (nbs[i][j])
 		{
